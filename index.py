@@ -22,7 +22,3 @@ def send_message():
 
 def your_chat_function(user_input):
     return process_query(user_input)
-
-
-if __name__ == "__main__":
-    app.run()
