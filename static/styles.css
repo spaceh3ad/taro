@@ -24,6 +24,7 @@ html {
 }
 
 .chat-box {
+  overflow-y: scroll; /* Allows scrolling */
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto; /* Scrollable */
@@ -58,6 +59,13 @@ button,
 button:hover,
 #send-button:hover {
   background-color: #0056b3;
+}
+
+button:disabled,
+#send-button:disabled {
+  background-color: #aaa; /* Dull color indicates it's not clickable */
+  cursor: not-allowed; /* Cursor indicates the action is not allowed */
+  opacity: 0.5; /* Button looks faded when disabled */
 }
 
 header {

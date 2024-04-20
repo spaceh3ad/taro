@@ -1,10 +1,11 @@
 function sendMessage() {
   const input = document.getElementById("user-input");
-  const chatBox = document.getElementById("chat-box");
   const loader = document.getElementById("loader");
+  const sendButton = document.getElementById("send-button"); // Get the send button
   const message = input.value.trim();
-  console.log(message);
+
   if (message) {
+    sendButton.disabled = true; // Disable the send button
     displayMessage(message, "user");
     loader.style.display = "block"; // Show loader
     fetch("/send-message", {
@@ -23,6 +24,8 @@ function sendMessage() {
       })
       .finally(() => {
         loader.style.display = "none"; // Hide loader regardless of success or error
+        sendButton.disabled = false; // Re-enable the send button
+        input.focus(); // Optional: bring focus back to the input
       });
     input.value = "";
   }
