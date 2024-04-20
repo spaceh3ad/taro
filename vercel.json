@@ -10,6 +10,5 @@
             "source": "/(.*)",
             "destination": "/api/index"
         }
-    ],
-    "pythonVersion": "3.10"
+    ]
 }
