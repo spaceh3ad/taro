@@ -13,25 +13,23 @@ html {
 .chat-container {
   width: 90%;
   max-width: 600px;
+  min-height: 700px; /* Set a minimum height for the chat container */
+  min-width: 500px; /* Set a minimum width for the chat container */
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 700px; /* Set a minimum height for the chat container */
-  min-width: 500px; /* Set a minimum width for the chat container */
 }
 
 .chat-box {
-  flex-grow: 1; /* To make the chat box grow and take available space */
-  overflow-y: auto;
+  flex-grow: 1;
   padding: 20px;
+  overflow-y: auto; /* Scrollable */
   border-bottom: 1px solid #ccc;
-  min-height: 600px; /* Set a minimum height for the chat box */
-  min-width: 300px; /* Set a minimum width for the chat container */
+  max-height: calc(100vh - 160px); /* Set a max height to allow scrolling */
 }
-
 .input-area {
   display: flex;
   padding: 10px;

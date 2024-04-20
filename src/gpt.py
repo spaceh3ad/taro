@@ -21,11 +21,11 @@ class GPT:
 
         # Instruct OpenAI to provide a summary or any other processing required
         response = self.client.chat.completions.create(
-            model="gpt-4-turbo",  # or the latest available engine
+            model="gpt-4",  # or the latest available engine
             messages=[
                 {"role": "user", "content": prompt},
             ],
-            max_tokens=200,  # Adjust as needed
+            max_tokens=300,  # Adjust as needed
             temperature=0.3,
         )
         return response.choices[0].message.content

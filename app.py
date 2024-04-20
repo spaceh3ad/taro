@@ -1,5 +1,6 @@
-from src.gpt import process_query
 from flask import Flask, render_template, request, jsonify
+from src.gpt import process_query
+import traceback
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
@@ -11,16 +12,28 @@ def index():
 
 @app.route("/send-message", methods=["POST"])
 def send_message():
-    # Assuming you receive a 'message' in the request
     user_input = request.json["message"]
-    # Here you would integrate with your chat logic as needed
-    response = your_chat_function(
-        user_input
-    )  # Replace with your function that processes input and returns response
-    return jsonify(response=response)
+    max_retries = 3  # Set the maximum number of retries
+    for attempt in range(max_retries):
+        try:
+            response = your_chat_function(user_input)
+            return jsonify(response=response)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            traceback.print_exc()
+            if attempt < max_retries - 1:
+                print(f"Retrying... Attempt {attempt + 1}")
+            else:
+                print("Max retries reached. Returning error response.")
+                response = {
+                    "error": "An internal error occurred. Please try again later."
+                }
+                return jsonify(response=response), 500
+    return jsonify(response={"error": "An unexpected error occurred"}), 500
 
 
 def your_chat_function(user_input):
+    # Implement your retry logic here if needed
     return process_query(user_input)
 
 
