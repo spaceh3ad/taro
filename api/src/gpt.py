@@ -1,5 +1,5 @@
 from openai import OpenAI
-from searchcaster_api import (
+from .searchcaster_api import (
     get_username,
     get_casts,
     get_casts_for_user,
