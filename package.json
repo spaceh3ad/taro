@@ -1,5 +1,8 @@
 {
     "engines": {
         "node": "18.x"
+    },
+    "scripts": {
+        "postinstall": "find . -name '__pycache__' -exec rm -rf {} +"
     }
 }
