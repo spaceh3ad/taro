@@ -13,7 +13,7 @@ def process_data(data):
         raise ValueError("No data found")
 
     processed_data = []
-    for i in data["casts"]:
+    for i in data["pageProps"]["data"]["casts"]:
         text = " ".join(
             word for word in extract_words(i["body"]["data"]["text"]) if word.isalpha()
         )
@@ -41,7 +41,8 @@ def get_casts(keywords):
 
 
 def get_casts_for_user(username):
-    url = f"{BASE_URL}/search?username={username}"
+    url = f"https://searchcaster.xyz/_next/data/JNBRi0-qX9XGHAPgGZE4Y/search.json?username={username}"
+    # url = f"{BASE_URL}/search?username={username}"
     print(url)
     return process_data(query_searchcaster_api(url))
 
@@ -51,7 +52,3 @@ def get_username(nickname):
     nickname = nickname.replace(" ", "+").lower()
     response = query_searchcaster_api(f"{base_url}/profiles.json?q={nickname}")
     return response["pageProps"]["data"][0]["body"]["username"]
-
-
-if __name__ == "__main__":
-    user_query = "What trending token people are talking about"
